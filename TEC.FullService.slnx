@@ -1,6 +1,9 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
   <Folder Name="/src/">
-  <Project Path="TEC.FullService.Api/TEC.FullService.Api.csproj" />
+    <Project Path="TEC.FullService.Api/TEC.FullService.Api.csproj" />
     <Project Path="TEC.FullService.Web/TEC.FullService.Web.csproj" />
   </Folder>
 </Solution>
