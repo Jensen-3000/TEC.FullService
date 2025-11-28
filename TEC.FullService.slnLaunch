@@ -3,11 +3,11 @@
     "Name": "FullService.Dev",
     "Projects": [
       {
-        "Path": "TEC.FullService.Api\\TEC.FullService.Api.csproj",
+        "Path": "src\\TEC.FullService.Api\\TEC.FullService.Api.csproj",
         "Action": "Start"
       },
       {
-        "Path": "TEC.FullService.Web\\TEC.FullService.Web.csproj",
+        "Path": "src\\TEC.FullService.Web\\TEC.FullService.Web.csproj",
         "Action": "Start"
       }
     ]
