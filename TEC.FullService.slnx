@@ -2,12 +2,11 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="README.md" />
   </Folder>
-  <Folder Name="/src/">
-    <Project Path="TEC.FullService.Api/TEC.FullService.Api.csproj" />
-    <Project Path="TEC.FullService.Application/TEC.FullService.Application.csproj" Id="163af1bf-9c64-4f3c-9012-2690ff9e7a69" />
-    <Project Path="TEC.FullService.Infrastructure/TEC.FullService.Infrastructure.csproj" Id="553ca376-f8cd-4e56-adbd-e2bb2fecb97b" />
-    <Project Path="TEC.FullService.Web/TEC.FullService.Web.csproj" />
-  </Folder>
-  <Project Path="TEC.FullService.Domain/TEC.FullService.Domain.csproj" Id="3eb24a7f-950f-43f2-8624-74a6fca08891" />
+  <Project Path="src/TEC.FullService.Api/TEC.FullService.Api.csproj" />
+  <Project Path="src/TEC.FullService.Application/TEC.FullService.Application.csproj" />
+  <Project Path="src/TEC.FullService.Domain/TEC.FullService.Domain.csproj" />
+  <Project Path="src/TEC.FullService.Infrastructure/TEC.FullService.Infrastructure.csproj" />
+  <Project Path="src/TEC.FullService.Web/TEC.FullService.Web.csproj" />
 </Solution>

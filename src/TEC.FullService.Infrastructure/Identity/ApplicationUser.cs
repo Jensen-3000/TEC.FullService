@@ -2,7 +2,7 @@
 
 namespace TEC.FullService.Infrastructure.Identity;
 
-internal class ApplicationUser : IdentityUser
+public sealed class ApplicationUser : IdentityUser
 {
 
 }

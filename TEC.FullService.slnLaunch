@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "FullService.Dev",
+    "Projects": [
+      {
+        "Path": "TEC.FullService.Api\\TEC.FullService.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "TEC.FullService.Web\\TEC.FullService.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
