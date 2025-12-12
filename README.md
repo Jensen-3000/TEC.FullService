@@ -22,23 +22,6 @@ Clone the repository and open the solution in Visual Studio.
 
 The solution contains these core projects:
 
-- **TEC.FullService.Api**  
-  Hosts the backend Web API, Identity, authentication, and FastEndpoints.
-
-- **TEC.FullService.Web**  
-  Blazor Web App UI using server-side interactivity (Interactive Server render mode).
-
-- **TEC.FullService.Infrastructure**  
-  Data access, EF Core DbContexts, Identity setup, connection strings, and persistence code.
-
-- **TEC.FullService.Application**  
-  Vertical slices (handlers, validators, requests, responses).
-
-- **TEC.FullService.Domain**  
-  Entities, value objects, and domain logic.
-
-Infrastructure depends on Domain.  
-API and Web depend on Application + Infrastructure.
 
 ---
 
@@ -123,13 +106,11 @@ No additional configuration is required for developers.
 5. Test using Swagger and Blazor UI  
 
 Migrations are handled separately and are not required for initial development.  
-See the extended developer guide in `/docs/DeveloperGuide.md` for details.
+TODO: Add extended guide -- See the extended developer guide in `/docs/DeveloperGuide.md` for details.
 
 ---
 
 ## 8. Notes
 
 - HTTPS is mandatory for all development and production endpoints.  
-- Identity and application databases are created automatically in Development.  
-- Infrastructure contains data access only; keep business logic inside Domain.  
-- All source code must be committed via Git.  
+- Identity and application databases are created automatically in Development.    
