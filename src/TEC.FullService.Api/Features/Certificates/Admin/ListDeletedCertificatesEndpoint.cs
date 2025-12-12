@@ -7,14 +7,9 @@ using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Certificates.Mappings;
 using TEC.FullService.Api.Persistence;
 using TEC.FullService.Shared.Common.Paging;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
-
-// Request
-internal sealed class ListDeletedCertificatesRequest : IHasListQuery
-{
-    public ListQuery Query { get; set; } = new();
-}
 
 // Validator
 internal sealed class ListDeletedCertificatesValidator : Validator<ListDeletedCertificatesRequest>

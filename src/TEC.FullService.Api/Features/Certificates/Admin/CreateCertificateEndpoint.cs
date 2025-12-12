@@ -5,30 +5,9 @@ using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
 using TEC.FullService.Shared.Common;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
-
-// Request
-internal sealed class CreateCertificateRequest
-{
-    public required string CertificateName { get; set; }
-    public required DateTime IssueDate { get; set; }
-    public required DateTime ExpiryDate { get; set; }
-    public required CertificateStatus Status { get; set; }
-    public required int UserId { get; set; }
-    public required int CourseId { get; set; }
-    public int? EnrollmentId { get; set; }
-    public int? ReplacesId { get; set; }
-    public int? CompetenceFundId { get; set; }
-}
-
-// Response
-internal sealed record CertificateCreatedResponse(
-    int Id,
-    string CertificateName,
-    DateTime IssueDate,
-    DateTime ExpiryDate,
-    CertificateStatus Status);
 
 // Validator
 internal class CreateCertificateValidator : Validator<CreateCertificateRequest>
@@ -44,24 +23,6 @@ internal class CreateCertificateValidator : Validator<CreateCertificateRequest>
 
         RuleFor(x => x.ExpiryDate)
             .NotEmpty();
-
-        RuleFor(x => x.UserId)
-            .GreaterThan(0);
-
-        RuleFor(x => x.CourseId)
-            .GreaterThan(0);
-
-        RuleFor(x => x.EnrollmentId)
-            .GreaterThan(0)
-            .When(x => x.EnrollmentId.HasValue);
-
-        RuleFor(x => x.ReplacesId)
-            .GreaterThan(0)
-            .When(x => x.ReplacesId.HasValue);
-
-        RuleFor(x => x.CompetenceFundId)
-            .GreaterThan(0)
-            .When(x => x.CompetenceFundId.HasValue);
 
         RuleFor(x => x.Status)
             .IsInEnum();
@@ -84,9 +45,9 @@ internal class CreateCertificateSummary : Summary<CreateCertificateEndpoint>
             IssueDate = new DateTime(2025, 1, 1),
             ExpiryDate = new DateTime(2027, 1, 1),
             Status = CertificateStatus.Active,
-            UserId = 1,
-            CourseId = 1,
-            CompetenceFundId = 1
+            UserId = Guid.CreateVersion7(),
+            CourseId = Guid.CreateVersion7(),
+            CompetenceFundId = Guid.CreateVersion7()
         };
         Response<CertificateCreatedResponse>(StatusCodes.Status201Created);
         Response(StatusCodes.Status400BadRequest);

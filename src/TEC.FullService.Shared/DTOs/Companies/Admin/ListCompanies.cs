@@ -25,12 +25,11 @@ public sealed class ListCompaniesRequest : IHasListQuery, ISortRequest<CompanySo
 
 // Response
 public sealed record CompanyListResponse(
-    int Id,
+    Guid Id,
     string Name,
     string CvrNumber,
     string ContactEmail,
     string? PhoneNumber,
     string? Address,
-    bool IsActive,
     DateTime CreatedAt
 );

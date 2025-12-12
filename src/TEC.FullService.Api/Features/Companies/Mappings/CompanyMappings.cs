@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 using TEC.FullService.Api.Domain;
-using TEC.FullService.Api.Features.Companies.Admin;
+using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Features.Companies.Mappings;
 

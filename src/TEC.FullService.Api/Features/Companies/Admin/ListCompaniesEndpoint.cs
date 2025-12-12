@@ -7,38 +7,9 @@ using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Companies.Mappings;
 using TEC.FullService.Api.Persistence;
 using TEC.FullService.Shared.Common.Paging;
+using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Features.Companies.Admin;
-
-internal enum CompanySortBy
-{
-    Id,
-    Name,
-    CvrNumber,
-    ContactEmail,
-    CreatedAt
-}
-
-// Request
-internal sealed class ListCompaniesRequest : IHasListQuery, ISortRequest<CompanySortBy>
-{
-    public ListQuery Query { get; set; } = new();
-
-    public CompanySortBy? SortBy { get; set; }
-
-    public bool? Desc { get; set; }
-}
-
-// Response
-internal sealed record CompanyListResponse(
-    Guid Id,
-    string Name,
-    string CvrNumber,
-    string ContactEmail,
-    string? PhoneNumber,
-    string? Address,
-    DateTime CreatedAt
-);
 
 // Validator
 internal sealed class ListCompaniesValidator : Validator<ListCompaniesRequest>

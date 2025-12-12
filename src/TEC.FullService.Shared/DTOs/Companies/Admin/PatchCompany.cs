@@ -3,7 +3,7 @@
 // Request
 public sealed class PatchCompanyRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string? Name { get; set; }
     public string? CvrNumber { get; set; }
     public string? ContactEmail { get; set; }
@@ -13,9 +13,8 @@ public sealed class PatchCompanyRequest
 
 // Response
 public sealed record CompanyPatchedResponse(
-    int Id,
+    Guid Id,
     string Name,
     string CvrNumber,
-    string ContactEmail,
-    bool IsActive
+    string ContactEmail
 );

@@ -3,17 +3,16 @@
 // Request
 public sealed class GetCompanyDetailsRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 }
 
 // Response
 public sealed record CompanyDetailsResponse(
-    int Id,
+    Guid Id,
     string Name,
     string CvrNumber,
     string ContactEmail,
     string? PhoneNumber,
     string? Address,
-    bool IsActive,
     DateTime CreatedAt
 );

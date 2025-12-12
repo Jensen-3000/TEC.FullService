@@ -10,18 +10,18 @@ namespace TEC.FullService.Api.Domain;
 /// </summary>
 public class Certificate : SoftDeletableEntity
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string CertificateName { get; set; } = null!;
     public DateTime IssueDate { get; set; }
     public DateTime ExpiryDate { get; set; }
     public CertificateStatus Status { get; set; }
 
     // Fremmednøgler
-    public int UserId { get; set; }
-    public int CourseId { get; set; }
-    public int? EnrollmentId { get; set; } // Nullable, for manuelt oprettede certifikater
-    public int? ReplacesId { get; set; } // Nullable, for fornyelseshistorik
-    public int? CompetenceFundId { get; set; }
+    public Guid UserId { get; set; }
+    public Guid CourseId { get; set; }
+    public Guid? EnrollmentId { get; set; } // Nullable, for manuelt oprettede certifikater
+    public Guid? ReplacesId { get; set; } // Nullable, for fornyelseshistorik
+    public Guid? CompetenceFundId { get; set; }
 
     // Navigation properties
     public User User { get; set; } = null!;
@@ -35,11 +35,11 @@ public class Certificate : SoftDeletableEntity
         DateTime issueDate,
         DateTime expiryDate,
         CertificateStatus status,
-        int userId,
-        int courseId,
-        int? enrollmentId = null,
-        int? replacesId = null,
-        int? competenceFundId = null)
+        Guid userId,
+        Guid courseId,
+        Guid? enrollmentId = null,
+        Guid? replacesId = null,
+        Guid? competenceFundId = null)
     {
         ValidateDates(issueDate, expiryDate);
         ValidateName(certificateName);
@@ -63,11 +63,11 @@ public class Certificate : SoftDeletableEntity
         DateTime issueDate,
         DateTime expiryDate,
         CertificateStatus status,
-        int userId,
-        int courseId,
-        int? enrollmentId,
-        int? replacesId,
-        int? competenceFundId)
+        Guid userId,
+        Guid courseId,
+        Guid? enrollmentId,
+        Guid? replacesId,
+        Guid? competenceFundId)
     {
         ValidateDates(issueDate, expiryDate);
         ValidateName(certificateName);
@@ -150,7 +150,7 @@ public class Certificate : SoftDeletableEntity
             throw new DomainException("Certificate name cannot exceed 255 characters.");
     }
 
-    private void ValidateReplacesId(int? replacesId)
+    private void ValidateReplacesId(Guid? replacesId)
     {
         if (replacesId.HasValue && replacesId.Value == Id)
             throw new DomainException("A certificate cannot replace itself.");

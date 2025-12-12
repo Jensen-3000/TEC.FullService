@@ -7,36 +7,9 @@ using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Certificates.Mappings;
 using TEC.FullService.Api.Persistence;
 using TEC.FullService.Shared.Common.Paging;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
-
-internal enum CertificateSortBy
-{
-    Id,
-    IssueDate,
-    ExpiryDate,
-    Status
-}
-
-// Request
-internal sealed class ListCertificatesRequest : IHasListQuery, ISortRequest<CertificateSortBy>
-{
-    public ListQuery Query { get; set; } = new();
-    public CertificateSortBy? SortBy { get; set; }
-    public bool? Desc { get; set; }
-}
-
-// Response
-internal sealed record CertificateListResponse(
-    int Id,
-    string CertificateName,
-    DateTime IssueDate,
-    DateTime ExpiryDate,
-    string Status,
-    string UserName,
-    string? CompanyName,
-    string CourseName
-);
 
 // Validator
 internal class ListCertificatesValidator : Validator<ListCertificatesRequest>

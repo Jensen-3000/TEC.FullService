@@ -3,5 +3,5 @@
 // Request
 public sealed class SoftDeleteCertificateRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 }

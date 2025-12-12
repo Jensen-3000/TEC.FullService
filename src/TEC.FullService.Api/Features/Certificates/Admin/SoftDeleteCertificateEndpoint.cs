@@ -4,14 +4,9 @@ using FluentValidation;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
-
-// Request
-internal sealed class SoftDeleteCertificateRequest
-{
-    public int Id { get; set; }
-}
 
 // Validator
 internal sealed class SoftDeleteCertificateValidator : Validator<SoftDeleteCertificateRequest>

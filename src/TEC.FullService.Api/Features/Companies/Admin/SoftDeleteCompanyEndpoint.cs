@@ -4,14 +4,9 @@ using FluentValidation;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
+using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Features.Companies.Admin;
-
-// Request
-internal sealed class SoftDeleteCompanyRequest
-{
-    public Guid Id { get; set; }
-}
 
 // Validator
 internal sealed class SoftDeleteCompanyValidator : Validator<SoftDeleteCompanyRequest>
@@ -22,7 +17,7 @@ internal sealed class SoftDeleteCompanyValidator : Validator<SoftDeleteCompanyRe
     }
 }
 
-// Summary (Swagger)
+// Summary for Swagger
 internal sealed class SoftDeleteCompanySummary : Summary<SoftDeleteCompanyEndpoint>
 {
     public SoftDeleteCompanySummary()

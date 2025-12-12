@@ -12,9 +12,8 @@ public sealed class CreateCompanyRequest
 
 // Response
 public sealed record CompanyCreatedResponse(
-    int Id,
+    Guid Id,
     string Name,
     string CvrNumber,
-    string ContactEmail,
-    bool IsActive
+    string ContactEmail
 );

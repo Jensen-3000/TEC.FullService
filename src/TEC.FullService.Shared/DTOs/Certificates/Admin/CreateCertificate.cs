@@ -9,16 +9,16 @@ public sealed class CreateCertificateRequest
     public required DateTime IssueDate { get; set; }
     public required DateTime ExpiryDate { get; set; }
     public required CertificateStatus Status { get; set; }
-    public required int UserId { get; set; }
-    public required int CourseId { get; set; }
-    public int? EnrollmentId { get; set; }
-    public int? ReplacesId { get; set; }
-    public int? CompetenceFundId { get; set; }
+    public required Guid UserId { get; set; }
+    public required Guid CourseId { get; set; }
+    public Guid? EnrollmentId { get; set; }
+    public Guid? ReplacesId { get; set; }
+    public Guid? CompetenceFundId { get; set; }
 }
 
 // Response
 public sealed record CertificateCreatedResponse(
-    int Id,
+    Guid Id,
     string CertificateName,
     DateTime IssueDate,
     DateTime ExpiryDate,

@@ -7,16 +7,9 @@ using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Companies.Mappings;
 using TEC.FullService.Api.Persistence;
 using TEC.FullService.Shared.Common.Paging;
+using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Features.Companies.Admin;
-
-// Request
-internal sealed class ListDeletedCompaniesRequest : IHasListQuery
-{
-    public ListQuery Query { get; set; } = new();
-
-    public bool? ActiveOnly { get; set; }
-}
 
 // Validator
 internal sealed class ListDeletedCompaniesValidator : Validator<ListDeletedCompaniesRequest>

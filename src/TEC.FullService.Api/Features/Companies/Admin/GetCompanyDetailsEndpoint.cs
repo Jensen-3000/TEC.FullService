@@ -5,25 +5,9 @@ using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Companies.Mappings;
 using TEC.FullService.Api.Persistence;
+using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Features.Companies.Admin;
-
-// Request
-internal sealed class GetCompanyDetailsRequest
-{
-    public Guid Id { get; set; }
-}
-
-// Response
-internal sealed record CompanyDetailsResponse(
-    Guid Id,
-    string Name,
-    string CvrNumber,
-    string ContactEmail,
-    string? PhoneNumber,
-    string? Address,
-    DateTime CreatedAt
-);
 
 // Swagger summary
 internal sealed class GetCompanyDetailsSummary : Summary<GetCompanyDetailsEndpoint>

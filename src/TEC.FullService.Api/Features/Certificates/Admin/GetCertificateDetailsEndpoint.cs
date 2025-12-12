@@ -6,32 +6,9 @@ using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Certificates.Mappings;
 using TEC.FullService.Api.Persistence;
 using TEC.FullService.Shared.Common;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
-
-// Request
-internal sealed class GetCertificateDetailsRequest
-{
-    public int Id { get; set; }
-}
-
-// Response
-internal sealed record CertificateDetailsResponse(
-    int Id,
-    string CertificateName,
-    DateTime IssueDate,
-    DateTime ExpiryDate,
-    CertificateStatus Status,
-    int UserId,
-    int CourseId,
-    int? EnrollmentId,
-    int? ReplacesId,
-    int? CompetenceFundId,
-    string UserName,
-    string? CompanyName,
-    EducationStatus? EducationStatus,
-    string? CompetenceFundName,
-    string CourseName);
 
 // Summary for Swagger
 internal class GetCertificateDetailsSummary : Summary<GetCertificateDetailsEndpoint>

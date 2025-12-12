@@ -1,23 +1,25 @@
-﻿namespace TEC.FullService.Shared.DTOs.Certificates.Admin;
+﻿using TEC.FullService.Shared.Common;
+
+namespace TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 // Request
 public sealed class GetCertificateDetailsRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 }
 
 // Response
 public sealed record CertificateDetailsResponse(
-    int Id,
+    Guid Id,
     string CertificateName,
     DateTime IssueDate,
     DateTime ExpiryDate,
     CertificateStatus Status,
-    int UserId,
-    int CourseId,
-    int? EnrollmentId,
-    int? ReplacesId,
-    int? CompetenceFundId,
+    Guid UserId,
+    Guid CourseId,
+    Guid? EnrollmentId,
+    Guid? ReplacesId,
+    Guid? CompetenceFundId,
     string UserName,
     string? CompanyName,
     EducationStatus? EducationStatus,

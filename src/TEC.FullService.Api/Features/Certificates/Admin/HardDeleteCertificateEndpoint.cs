@@ -4,19 +4,14 @@ using FluentValidation;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
-
-// Request
-internal sealed class HardDeleteCertificateRequest
-{
-    public int Id { get; set; }
-}
 
 // Validator
 internal sealed class HardDeleteCertificateValidator : Validator<HardDeleteCertificateRequest>
 {
-    public HardDeleteCertificateValidator() => RuleFor(x => x.Id).GreaterThan(0);
+    public HardDeleteCertificateValidator() { }
 }
 
 // Summary for Swagger
@@ -38,7 +33,7 @@ internal sealed class HardDeleteCertificateEndpoint(FullServiceDbContext db)
 {
     public override void Configure()
     {
-        Delete("/admin/certificates/{id}/hard-delete");
+        Delete("/admin/certificates/{id:guid}/hard-delete");
         Roles("Admin");
         Description(x => x.AutoTagOverride("Admin/Certificates"));
     }

@@ -20,7 +20,7 @@ public sealed class ListCertificatesRequest : IHasListQuery, ISortRequest<Certif
 
 // Response
 public sealed record CertificateListResponse(
-    int Id,
+    Guid Id,
     string CertificateName,
     DateTime IssueDate,
     DateTime ExpiryDate,

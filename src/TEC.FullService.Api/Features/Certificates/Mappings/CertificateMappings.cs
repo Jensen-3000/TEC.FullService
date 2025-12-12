@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 using TEC.FullService.Api.Domain;
-using TEC.FullService.Api.Features.Certificates.Admin;
+using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Mappings;
 

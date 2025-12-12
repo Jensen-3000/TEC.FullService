@@ -4,27 +4,9 @@ using FluentValidation;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
+using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Features.Companies.Admin;
-
-// Request
-internal sealed class PatchCompanyRequest
-{
-    public Guid Id { get; set; }
-    public string? Name { get; set; }
-    public string? CvrNumber { get; set; }
-    public string? ContactEmail { get; set; }
-    public string? PhoneNumber { get; set; }
-    public string? Address { get; set; }
-}
-
-// Response
-internal sealed record CompanyPatchedResponse(
-    Guid Id,
-    string Name,
-    string CvrNumber,
-    string ContactEmail
-);
 
 // Validator
 internal sealed class PatchCompanyValidator : Validator<PatchCompanyRequest>

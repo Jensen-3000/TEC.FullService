@@ -3,7 +3,7 @@
 // Request
 public sealed class UpdateCompanyRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public required string Name { get; set; }
     public required string CvrNumber { get; set; }
     public required string ContactEmail { get; set; }
@@ -13,9 +13,8 @@ public sealed class UpdateCompanyRequest
 
 // Response
 public sealed record CompanyUpdatedResponse(
-    int Id,
+    Guid Id,
     string Name,
     string CvrNumber,
-    string ContactEmail,
-    bool IsActive
+    string ContactEmail
 );
