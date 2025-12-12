@@ -5,8 +5,6 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="src/TEC.FullService.Api/TEC.FullService.Api.csproj" />
-  <Project Path="src/TEC.FullService.Application/TEC.FullService.Application.csproj" />
-  <Project Path="src/TEC.FullService.Domain/TEC.FullService.Domain.csproj" />
-  <Project Path="src/TEC.FullService.Infrastructure/TEC.FullService.Infrastructure.csproj" />
+  <Project Path="src/TEC.FullService.Shared/TEC.FullService.Shared.csproj" />
   <Project Path="src/TEC.FullService.Web/TEC.FullService.Web.csproj" />
 </Solution>

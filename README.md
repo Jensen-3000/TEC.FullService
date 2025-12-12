@@ -102,7 +102,6 @@ dotnet run --project TEC.FullService.Web
 ## 6. Running Both Together
 
 The solution is preconfigured to start both the API and Web projects simultaneously.
-If not defaulted, you can select "FullService.Dev" to launch both projects.
 
 Press **F5** in Visual Studio to launch:
 
@@ -124,7 +123,7 @@ No additional configuration is required for developers.
 5. Test using Swagger and Blazor UI  
 
 Migrations are handled separately and are not required for initial development.  
-TODO: Add extended guide -- See the extended developer guide in `/docs/DeveloperGuide.md` for details.
+See the extended developer guide in `/docs/DeveloperGuide.md` for details.
 
 ---
 
@@ -134,28 +133,3 @@ TODO: Add extended guide -- See the extended developer guide in `/docs/Developer
 - Identity and application databases are created automatically in Development.  
 - Infrastructure contains data access only; keep business logic inside Domain.  
 - All source code must be committed via Git.  
-
----
-
-## Commit Message Standard for AI-Generated Commits
-
-### Visual Studio 2026 Integration
-To enable Copilot repository instructions:
-
-Tools → Options → GitHub Copilot → Source Control Integration
-
-Once enabled, use "Generate Git commit message" in the Git Changes window.
-
-### AI Commit Format (Conventional Commits v1.0.0)
-Add the following configuration to Visual Studio 2026 to enforce the format:
-
-```text
-Use Conventional Commits v1.0.0.
-Format: <type>(optional scope): short imperative description.
-Allowed types: feat, fix, docs, style, refactor, perf, test, chore, ci.
-One single line only.
-No commit body.
-No explanations.
-No file lists.
-No bullet points.
-Subject max ~50 characters, imperative English.

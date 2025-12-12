@@ -7,4 +7,8 @@
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TEC.FullService.Shared\TEC.FullService.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
