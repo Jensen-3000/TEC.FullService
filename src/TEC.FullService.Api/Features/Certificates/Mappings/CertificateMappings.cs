@@ -14,7 +14,7 @@ public static class CertificateMappings
             c.IssueDate,
             c.ExpiryDate,
             c.Status.ToString(),
-            c.User.FirstName + " " + c.User.LastName,
+            c.User.DisplayName,
             c.User.Company != null ? c.User.Company.Name : null,
             c.Course.Name);
 
@@ -31,7 +31,7 @@ public static class CertificateMappings
             c.EnrollmentId,
             c.ReplacesId,
             c.CompetenceFundId,
-            c.User.FirstName + " " + c.User.LastName,
+            c.User.DisplayName,
             // Company may be null
             c.User.Company != null ? c.User.Company.Name : null,
             c.User.EducationStatus,

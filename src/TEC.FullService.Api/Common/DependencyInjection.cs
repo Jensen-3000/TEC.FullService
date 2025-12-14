@@ -31,6 +31,8 @@ internal static class DependencyInjection
 
         services.AddScoped<AuditInterceptor>();
         services.AddScoped<SoftDeleteInterceptor>();
+        services.AddScoped<GuidV7Interceptor>();
+        services.AddScoped<UserProfileSharedKeyInterceptor>();
     }
 
     private static void AddOptions(IServiceCollection services, IConfiguration config)
@@ -62,7 +64,9 @@ internal static class DependencyInjection
             options.UseSqlServer(db.FullServiceConnectionString);
             options.AddInterceptors(
                 sp.GetRequiredService<AuditInterceptor>(),
-                sp.GetRequiredService<SoftDeleteInterceptor>());
+                sp.GetRequiredService<SoftDeleteInterceptor>(),
+                sp.GetRequiredService<GuidV7Interceptor>(),
+                sp.GetRequiredService<UserProfileSharedKeyInterceptor>());
         });
     }
 

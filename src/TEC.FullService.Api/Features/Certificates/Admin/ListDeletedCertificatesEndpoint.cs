@@ -58,8 +58,7 @@ internal sealed class ListDeletedCertificatesEndpoint(FullServiceDbContext db)
     {
         return q.Where(c =>
             c.CertificateName.Contains(search) ||
-            c.User.FirstName.Contains(search) ||
-            c.User.LastName.Contains(search) ||
+            c.User.DisplayName.Contains(search) ||
             c.Course.Name.Contains(search)
         );
     }

@@ -24,7 +24,7 @@ public class Certificate : SoftDeletableEntity
     public Guid? CompetenceFundId { get; set; }
 
     // Navigation properties
-    public User User { get; set; } = null!;
+    public UserProfile User { get; set; } = null!;
     public Course Course { get; set; } = null!;
     public Enrollment? Enrollment { get; set; } // behøver vi overhovedet denne?
     public Certificate? ReplacedCertificate { get; set; }

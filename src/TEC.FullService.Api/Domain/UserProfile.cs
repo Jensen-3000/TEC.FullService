@@ -1,5 +1,6 @@
 ﻿using TEC.FullService.Api.Domain.Common;
 using TEC.FullService.Api.Identity;
+using TEC.FullService.Shared.Common;
 
 namespace TEC.FullService.Api.Domain;
 
@@ -12,4 +13,7 @@ public sealed class UserProfile : SoftDeletableEntity
 
     public string DisplayName { get; set; } = "";
     public Guid CompanyId { get; set; }
+
+    public Company? Company { get; set; }
+    public EducationStatus? EducationStatus { get; set; }
 }

@@ -1,6 +1,6 @@
 using FastEndpoints;
 using Microsoft.AspNetCore.Identity;
-using TEC.FullService.Api.Extensions;
+using TEC.FullService.Api.Common;
 using TEC.FullService.Api.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);

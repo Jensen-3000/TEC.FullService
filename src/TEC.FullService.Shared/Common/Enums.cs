@@ -43,3 +43,15 @@ public enum EducationStatus
     [EnumMember(Value = "Andet")]
     Other
 }
+
+public enum EnrollmentStatus
+{
+    [EnumMember(Value = "Afventer Godkendelse")]
+    PendingApproval,
+    [EnumMember(Value = "Godkendt")]
+    Approved,
+    [EnumMember(Value = "Annulleret")]
+    Cancelled,
+    [EnumMember(Value = "Gennemført")]
+    Completed
+}
