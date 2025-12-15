@@ -19,7 +19,9 @@ internal abstract class ListDeletedEndpointBase<TRequest, TEntity, TResponse>(
     protected readonly FullServiceDbContext Db = db;
 
     protected abstract IQueryable<TEntity> Query(TRequest req, IQueryable<TEntity> query);
-    protected abstract IQueryable<TEntity> ApplySearch(IQueryable<TEntity> q, string search);
+
+    protected virtual IQueryable<TEntity> ApplySearch(IQueryable<TEntity> q, string search) => q;
+
     protected abstract Expression<Func<TEntity, TResponse>> Projection { get; }
 
     public override async Task HandleAsync(TRequest req, CancellationToken ct)

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using FastEndpoints;
 using Microsoft.AspNetCore.Identity;
 using TEC.FullService.Api.Common;
@@ -6,8 +7,12 @@ using TEC.FullService.Api.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-
 builder.Services.AddApiServices(builder.Configuration);
+
+// ASP.NET Core ProblemDetails
+builder.Services.AddProblemDetails(options =>
+    options.CustomizeProblemDetails = ctx =>
+        ctx.ProblemDetails.Extensions["traceId"] = Activity.Current?.Id ?? ctx.HttpContext.TraceIdentifier);
 
 builder.Services.AddFastEndpoints();
 builder.Services.AddAuthorization();
@@ -21,7 +26,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
     using var scope = app.Services.CreateScope();
-
     var identityDb = scope.ServiceProvider.GetRequiredService<ApplicationIdentityDbContext>();
     var fullDb = scope.ServiceProvider.GetRequiredService<FullServiceDbContext>();
 
@@ -29,11 +33,19 @@ if (app.Environment.IsDevelopment())
     await fullDb.Database.EnsureCreatedAsync();
 }
 
+// Unhandled exceptions -> RFC7807 response
+app.UseExceptionHandler();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseFastEndpoints();
+app.UseFastEndpoints(c =>
+{
+    // FastEndpoints validation & endpoint errors -> RFC7807 response
+    c.Errors.UseProblemDetails();
+    c.Errors.ProducesMetadataType = typeof(ProblemDetails);
+});
 
 app.Run();
