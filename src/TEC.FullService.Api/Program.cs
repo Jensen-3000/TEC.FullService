@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddApiServices(builder.Configuration);
 
-// ASP.NET Core ProblemDetails
 builder.Services.AddProblemDetails(options =>
     options.CustomizeProblemDetails = ctx =>
         ctx.ProblemDetails.Extensions["traceId"] = Activity.Current?.Id ?? ctx.HttpContext.TraceIdentifier);
@@ -33,7 +32,6 @@ if (app.Environment.IsDevelopment())
     await fullDb.Database.EnsureCreatedAsync();
 }
 
-// Unhandled exceptions -> RFC7807 response
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
@@ -43,7 +41,6 @@ app.UseAuthorization();
 
 app.UseFastEndpoints(c =>
 {
-    // FastEndpoints validation & endpoint errors -> RFC7807 response
     c.Errors.UseProblemDetails();
     c.Errors.ProducesMetadataType = typeof(ProblemDetails);
 });
