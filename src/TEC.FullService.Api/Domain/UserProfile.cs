@@ -6,7 +6,7 @@ namespace TEC.FullService.Api.Domain;
 
 public sealed class UserProfile : SoftDeletableEntity
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.CreateVersion7();
     public Guid IdentityUserId { get; set; }
 
     public ApplicationUser? IdentityUser { get; set; }

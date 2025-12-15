@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using FastEndpoints;
-using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Domain.Common;
 using TEC.FullService.Shared.Common.Paging;
 using TEC.FullService.Api.Persistence;

@@ -8,7 +8,7 @@ namespace TEC.FullService.Api.Domain;
 /// </summary>
 public class Enrollment
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; } = Guid.CreateVersion7();
     public decimal PricePaid { get; set; }
     public DateTime EnrollmentDate { get; set; }
     public DateTime CourseStartDate { get; set; }
@@ -19,8 +19,8 @@ public class Enrollment
 
     // Fremmednøgler
     public Guid UserId { get; set; }
-    public int CourseId { get; set; }
-    public int? FundId { get; set; } // Nullable
+    public Guid CourseId { get; set; }
+    public Guid? FundId { get; set; } // Nullable
     public Guid? ApprovedByUserId { get; set; } // Nullable
 
     // Navigation properties

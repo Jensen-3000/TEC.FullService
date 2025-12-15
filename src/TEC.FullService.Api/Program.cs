@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Identity;
 using TEC.FullService.Api.Common;
 using TEC.FullService.Api.Persistence;
@@ -13,7 +15,10 @@ builder.Services.AddProblemDetails(options =>
     options.CustomizeProblemDetails = ctx =>
         ctx.ProblemDetails.Extensions["traceId"] = Activity.Current?.Id ?? ctx.HttpContext.TraceIdentifier);
 
-builder.Services.AddFastEndpoints();
+builder.Services
+    .AddFastEndpoints()
+    .SwaggerDocument();
+
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
                 .AddIdentityCookies();
@@ -43,6 +48,17 @@ app.UseFastEndpoints(c =>
 {
     c.Errors.UseProblemDetails();
     c.Errors.ProducesMetadataType = typeof(ProblemDetails);
-});
+    c.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
+    c.Endpoints.RoutePrefix = "api";
+
+#if DEBUG
+    c.Endpoints.Configurator = ep =>
+    {
+        ep.AllowAnonymous();
+    };
+#endif
+
+})
+.UseSwaggerGen();
 
 app.Run();

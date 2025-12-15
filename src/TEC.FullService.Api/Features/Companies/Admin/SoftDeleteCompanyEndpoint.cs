@@ -1,6 +1,5 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Swagger;
-using FluentValidation;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
@@ -46,5 +45,15 @@ internal sealed class SoftDeleteCompanyEndpoint(FullServiceDbContext db)
     protected override Task<Company?> FindEntity(SoftDeleteCompanyRequest req, CancellationToken ct)
     {
         return Db.Companies.FirstOrDefaultAsync(c => c.Id == req.Id, ct);
+    }
+
+    protected override async Task<bool> ValidateDeleteAsync(SoftDeleteCompanyRequest req, Company entity, CancellationToken ct)
+    {
+        var hasUsers = await Db.Set<UserProfile>().AnyAsync(u => u.CompanyId == entity.Id, ct);
+        if (!hasUsers)
+            return true;
+
+        AddError("company", "Company cannot be deleted while users exist.");
+        return false;
     }
 }

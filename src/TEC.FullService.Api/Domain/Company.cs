@@ -1,5 +1,4 @@
 ﻿using TEC.FullService.Api.Domain.Common;
-using TEC.FullService.Shared.DTOs.Companies.Admin;
 
 namespace TEC.FullService.Api.Domain;
 
@@ -10,7 +9,7 @@ public class Company : SoftDeletableEntity
 
     }
 
-    public Guid Id { get; private set; }
+    public Guid Id { get; private set; } = Guid.CreateVersion7();
     public required string Name { get; set; }
     public required string CvrNumber { get; set; }
     public required string ContactEmail { get; set; }
@@ -68,40 +67,31 @@ public class Company : SoftDeletableEntity
     /// <summary>
     /// Applies a patch request to the company, updating only provided fields.
     /// </summary>
-    /// <param name="req"></param>
-    public void ApplyPatch(PatchCompanyRequest req)
+    public void ApplyPatch(CompanyPatch patch)
     {
-        if (req.Name is not null)
+        if (patch.Name is not null)
         {
-            ValidateName(req.Name);
-            Name = req.Name;
+            ValidateName(patch.Name);
+            Name = patch.Name;
         }
 
-        if (req.CvrNumber is not null)
+        if (patch.CvrNumber is not null)
         {
-            ValidateCvrNumber(req.CvrNumber);
-            CvrNumber = req.CvrNumber;
+            ValidateCvrNumber(patch.CvrNumber);
+            CvrNumber = patch.CvrNumber;
         }
 
-        if (req.ContactEmail is not null)
+        if (patch.ContactEmail is not null)
         {
-            ValidateContactEmail(req.ContactEmail);
-            ContactEmail = req.ContactEmail;
+            ValidateContactEmail(patch.ContactEmail);
+            ContactEmail = patch.ContactEmail;
         }
 
-        if (req.PhoneNumber is not null)
-            PhoneNumber = req.PhoneNumber;
+        if (patch.PhoneNumber is not null)
+            PhoneNumber = patch.PhoneNumber;
 
-        if (req.Address is not null)
-            Address = req.Address;
-    }
-
-    public override void Delete(Guid? userId = null)
-    {
-        if (Users.Any()) // Use Any() as its more efficient than Count, as count is in memory and Any can be translated to SQL EXISTS
-            throw new DomainException("Company cannot be deleted while users exist.");
-
-        base.Delete(userId);
+        if (patch.Address is not null)
+            Address = patch.Address;
     }
 
     private static void ValidateName(string name)

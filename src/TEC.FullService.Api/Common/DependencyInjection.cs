@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Configuration;
 using TEC.FullService.Api.Identity;
 using TEC.FullService.Api.Persistence;
@@ -31,8 +30,6 @@ internal static class DependencyInjection
 
         services.AddScoped<AuditInterceptor>();
         services.AddScoped<SoftDeleteInterceptor>();
-        services.AddScoped<GuidV7Interceptor>();
-        services.AddScoped<UserProfileSharedKeyInterceptor>();
     }
 
     private static void AddOptions(IServiceCollection services, IConfiguration config)
@@ -64,9 +61,7 @@ internal static class DependencyInjection
             options.UseSqlServer(db.FullServiceConnectionString);
             options.AddInterceptors(
                 sp.GetRequiredService<AuditInterceptor>(),
-                sp.GetRequiredService<SoftDeleteInterceptor>(),
-                sp.GetRequiredService<GuidV7Interceptor>(),
-                sp.GetRequiredService<UserProfileSharedKeyInterceptor>());
+                sp.GetRequiredService<SoftDeleteInterceptor>());
         });
     }
 

@@ -17,6 +17,14 @@ internal abstract class SoftDeleteEndpointBase<TRequest, TEntity>(
 
     protected abstract Task<TEntity?> FindEntity(TRequest req, CancellationToken ct);
 
+    /// <summary>
+    /// Optional validation hook before performing a soft delete.
+    /// Override and add errors via <see cref="Endpoint{TRequest}.AddError(string, string)"/>.
+    /// Return false to stop execution and send a 400 error response.
+    /// </summary>
+    protected virtual Task<bool> ValidateDeleteAsync(TRequest req, TEntity entity, CancellationToken ct)
+        => Task.FromResult(true);
+
     public override async Task HandleAsync(TRequest req, CancellationToken ct)
     {
         // Find
@@ -25,6 +33,13 @@ internal abstract class SoftDeleteEndpointBase<TRequest, TEntity>(
         if (entity is null)
         {
             await Send.NotFoundAsync(ct);
+            return;
+        }
+
+        // Validate
+        if (!await ValidateDeleteAsync(req, entity, ct))
+        {
+            await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
             return;
         }
 

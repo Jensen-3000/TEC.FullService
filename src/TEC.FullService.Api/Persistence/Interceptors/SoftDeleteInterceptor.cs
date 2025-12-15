@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using TEC.FullService.Api.Common;
@@ -46,7 +45,7 @@ public sealed class SoftDeleteInterceptor(TimeProvider timeProvider, ICurrentUse
                 case EntityState.Added:
                 case EntityState.Modified:
                 {
-                    var isDeleted = (bool)entry.Property(x => x.IsDeleted).CurrentValue;
+                    var isDeleted = entry.Property(x => x.IsDeleted).CurrentValue;
                     if (isDeleted)
                         StampDeleted(entry, now, userId);
 

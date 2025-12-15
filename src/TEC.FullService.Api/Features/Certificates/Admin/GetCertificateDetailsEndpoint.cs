@@ -5,7 +5,6 @@ using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Features.Certificates.Mappings;
 using TEC.FullService.Api.Persistence;
-using TEC.FullService.Shared.Common;
 using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;

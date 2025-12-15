@@ -4,7 +4,6 @@ using FluentValidation;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
-using TEC.FullService.Shared.Common;
 using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Features.Certificates.Admin;
@@ -76,7 +75,16 @@ internal sealed class PatchCertificateEndpoint(FullServiceDbContext db)
 
     protected override void ApplyPatch(Certificate entity, PatchCertificateRequest req)
     {
-        entity.ApplyPatch(req);
+        entity.ApplyPatch(new CertificatePatch(
+            CertificateName: req.CertificateName,
+            IssueDate: req.IssueDate,
+            ExpiryDate: req.ExpiryDate,
+            Status: req.Status,
+            UserId: req.UserId,
+            CourseId: req.CourseId,
+            EnrollmentId: req.EnrollmentId,
+            ReplacesId: req.ReplacesId,
+            CompetenceFundId: req.CompetenceFundId));
     }
 
     protected override CertificatePatchedResponse MapToResponse(Certificate entity)

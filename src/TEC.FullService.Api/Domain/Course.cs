@@ -6,7 +6,7 @@
 /// </summary>
 public class Course
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; } = Guid.CreateVersion7();
     public string? ExternalId { get; set; }
     public string CourseCode { get; set; } = null!;
     public string Name { get; set; } = null!;

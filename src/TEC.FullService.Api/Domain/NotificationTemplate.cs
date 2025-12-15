@@ -1,23 +1,22 @@
-﻿namespace TEC.FullService.Api.Domain
+﻿namespace TEC.FullService.Api.Domain;
+
+/// <summary>
+/// Repræsenterer en skabelon for en notifikation (e-mail eller SMS).
+/// Giver administratorer mulighed for at redigere kommunikationen.
+/// </summary>
+public class NotificationTemplate
 {
+    public Guid Id { get; set; } = Guid.CreateVersion7();
+
     /// <summary>
-    /// Repræsenterer en skabelon for en notifikation (e-mail eller SMS).
-    /// Giver administratorer mulighed for at redigere kommunikationen.
+    /// Et unikt systemnavn for skabelonen, f.eks. "CertificateExpiry6Months".
+    /// Bruges af koden til at finde den rigtige skabelon.
     /// </summary>
-    public class NotificationTemplate
-    {
-        public int Id { get; set; }
+    public string TemplateType { get; set; } = null!;
 
-        /// <summary>
-        /// Et unikt systemnavn for skabelonen, f.eks. "CertificateExpiry6Months".
-        /// Bruges af koden til at finde den rigtige skabelon.
-        /// </summary>
-        public string TemplateType { get; set; } = null!;
+    public string EmailSubject { get; set; } = null!;
 
-        public string EmailSubject { get; set; } = null!;
+    public string EmailBody { get; set; } = null!;
 
-        public string EmailBody { get; set; } = null!;
-
-        public string? SmsBody { get; set; }
-    }
+    public string? SmsBody { get; set; }
 }

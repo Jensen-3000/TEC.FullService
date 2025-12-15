@@ -1,6 +1,5 @@
 ﻿using TEC.FullService.Api.Domain.Common;
 using TEC.FullService.Shared.Common;
-using TEC.FullService.Shared.DTOs.Certificates.Admin;
 
 namespace TEC.FullService.Api.Domain;
 
@@ -10,7 +9,7 @@ namespace TEC.FullService.Api.Domain;
 /// </summary>
 public class Certificate : SoftDeletableEntity
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; private set; } = Guid.CreateVersion7();
     public string CertificateName { get; set; } = null!;
     public DateTime IssueDate { get; set; }
     public DateTime ExpiryDate { get; set; }
@@ -46,6 +45,7 @@ public class Certificate : SoftDeletableEntity
 
         return new Certificate
         {
+            Id = Guid.CreateVersion7(),
             CertificateName = certificateName,
             IssueDate = issueDate,
             ExpiryDate = expiryDate,
@@ -87,52 +87,51 @@ public class Certificate : SoftDeletableEntity
     /// <summary>
     /// Applies a patch to the certificate, updating only the fields provided in the request.
     /// </summary>
-    /// <param name="req"></param>
-    public void ApplyPatch(PatchCertificateRequest req)
+    public void ApplyPatch(CertificatePatch patch)
     {
-        if (req.CertificateName is not null)
+        if (patch.CertificateName is not null)
         {
-            ValidateName(req.CertificateName);
-            CertificateName = req.CertificateName;
+            ValidateName(patch.CertificateName);
+            CertificateName = patch.CertificateName;
         }
 
-        if (req.IssueDate.HasValue)
+        if (patch.IssueDate.HasValue)
         {
             // Hvis vi opdaterer IssueDate, skal vi validere ift. enten ny ExpiryDate eller eksisterende.
-            var newIssue = req.IssueDate.Value;
-            var newExpiry = req.ExpiryDate ?? ExpiryDate;
+            var newIssue = patch.IssueDate.Value;
+            var newExpiry = patch.ExpiryDate ?? ExpiryDate;
             ValidateDates(newIssue, newExpiry);
             IssueDate = newIssue;
         }
 
-        if (req.ExpiryDate.HasValue)
+        if (patch.ExpiryDate.HasValue)
         {
-            var newIssue = req.IssueDate ?? IssueDate;
-            var newExpiry = req.ExpiryDate.Value;
+            var newIssue = patch.IssueDate ?? IssueDate;
+            var newExpiry = patch.ExpiryDate.Value;
             ValidateDates(newIssue, newExpiry);
             ExpiryDate = newExpiry;
         }
 
-        if (req.Status.HasValue)
-            Status = req.Status.Value;
+        if (patch.Status.HasValue)
+            Status = patch.Status.Value;
 
-        if (req.UserId.HasValue)
-            UserId = req.UserId.Value;
+        if (patch.UserId.HasValue)
+            UserId = patch.UserId.Value;
 
-        if (req.CourseId.HasValue)
-            CourseId = req.CourseId.Value;
+        if (patch.CourseId.HasValue)
+            CourseId = patch.CourseId.Value;
 
-        if (req.EnrollmentId.HasValue)
-            EnrollmentId = req.EnrollmentId.Value;
+        if (patch.EnrollmentId.HasValue)
+            EnrollmentId = patch.EnrollmentId.Value;
 
-        if (req.ReplacesId.HasValue)
+        if (patch.ReplacesId.HasValue)
         {
-            ValidateReplacesId(req.ReplacesId.Value);
-            ReplacesId = req.ReplacesId.Value;
+            ValidateReplacesId(patch.ReplacesId.Value);
+            ReplacesId = patch.ReplacesId.Value;
         }
 
-        if (req.CompetenceFundId.HasValue)
-            CompetenceFundId = req.CompetenceFundId.Value;
+        if (patch.CompetenceFundId.HasValue)
+            CompetenceFundId = patch.CompetenceFundId.Value;
     }
 
     private static void ValidateDates(DateTime issueDate, DateTime expiryDate)

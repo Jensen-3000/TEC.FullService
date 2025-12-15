@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Domain.Common;
 
 namespace TEC.FullService.Api.Persistence.Extensions;

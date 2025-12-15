@@ -74,7 +74,12 @@ internal sealed class PatchCompanyEndpoint(FullServiceDbContext db)
 
     protected override void ApplyPatch(Company entity, PatchCompanyRequest req)
     {
-        entity.ApplyPatch(req);
+        entity.ApplyPatch(new CompanyPatch(
+            Name: req.Name,
+            CvrNumber: req.CvrNumber,
+            ContactEmail: req.ContactEmail,
+            PhoneNumber: req.PhoneNumber,
+            Address: req.Address));
     }
 
     protected override CompanyPatchedResponse MapToResponse(Company c)

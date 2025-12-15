@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using FastEndpoints;
-using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Persistence;
 
 namespace TEC.FullService.Api.Features.BaseEndpoints;
