@@ -1,4 +1,5 @@
-﻿using TEC.FullService.Api.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Persistence.Extensions;
 
 namespace TEC.FullService.Api.Persistence;

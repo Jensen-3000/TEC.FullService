@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using TEC.FullService.Api.Domain.Common;
 
 namespace TEC.FullService.Api.Persistence.Interceptors;

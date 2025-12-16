@@ -1,6 +1,7 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
@@ -75,7 +76,7 @@ internal sealed class PatchCertificateEndpoint(FullServiceDbContext db)
 
     protected override void ApplyPatch(Certificate entity, PatchCertificateRequest req)
     {
-        entity.ApplyPatch(new CertificatePatch(
+        entity.ApplyPatch(new Certificate.Patch(
             CertificateName: req.CertificateName,
             IssueDate: req.IssueDate,
             ExpiryDate: req.ExpiryDate,

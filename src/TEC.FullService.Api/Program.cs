@@ -52,10 +52,7 @@ app.UseFastEndpoints(c =>
     c.Endpoints.RoutePrefix = "api";
 
 #if DEBUG
-    c.Endpoints.Configurator = ep =>
-    {
-        ep.AllowAnonymous();
-    };
+    c.Endpoints.Configurator = ep => ep.AllowAnonymous();
 #endif
 
 })

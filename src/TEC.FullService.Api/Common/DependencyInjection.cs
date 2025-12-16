@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Configuration;
 using TEC.FullService.Api.Identity;
 using TEC.FullService.Api.Persistence;

@@ -16,4 +16,6 @@ public sealed class UserProfile : SoftDeletableEntity
 
     public Company? Company { get; set; }
     public EducationStatus? EducationStatus { get; set; }
+
+    public ICollection<Certificate> Certificates { get; set; } = new List<Certificate>();
 }

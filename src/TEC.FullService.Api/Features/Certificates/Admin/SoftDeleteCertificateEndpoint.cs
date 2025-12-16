@@ -1,5 +1,6 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Microsoft.EntityFrameworkCore;
 using TEC.FullService.Api.Domain;
 using TEC.FullService.Api.Features.BaseEndpoints;
 using TEC.FullService.Api.Persistence;
