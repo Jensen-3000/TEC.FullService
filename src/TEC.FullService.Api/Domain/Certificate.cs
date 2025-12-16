@@ -9,11 +9,13 @@ namespace TEC.FullService.Api.Domain;
 /// </summary>
 public class Certificate : SoftDeletableEntity
 {
-    public Guid Id { get; private set; } = Guid.CreateVersion7();
-    public string CertificateName { get; set; } = null!;
-    public DateTime IssueDate { get; set; }
-    public DateTime ExpiryDate { get; set; }
-    public CertificateStatus Status { get; set; }
+    private Certificate() { }
+
+    public Guid Id { get; private init; } = Guid.CreateVersion7();
+    public string CertificateName { get; private set; } = null!;
+    public DateTime IssueDate { get; private set; }
+    public DateTime ExpiryDate { get; private set; }
+    public CertificateStatus Status { get; private set; }
 
     // Fremmednøgler
     public Guid UserId { get; set; }
@@ -25,7 +27,7 @@ public class Certificate : SoftDeletableEntity
     // Navigation properties
     public UserProfile User { get; set; } = null!;
     public Course Course { get; set; } = null!;
-    public Enrollment? Enrollment { get; set; } // behøver vi overhovedet denne?
+    //public Enrollment? Enrollment { get; set; } // behøver vi overhovedet denne?
     public Certificate? ReplacedCertificate { get; set; }
     public CompetenceFund? CompetenceFund { get; set; }
 
@@ -87,7 +89,7 @@ public class Certificate : SoftDeletableEntity
     /// <summary>
     /// Applies a patch to the certificate, updating only the fields provided in the request.
     /// </summary>
-    public void ApplyPatch(CertificatePatch patch)
+    public void ApplyPatch(Patch patch)
     {
         if (patch.CertificateName is not null)
         {
@@ -154,4 +156,19 @@ public class Certificate : SoftDeletableEntity
         if (replacesId.HasValue && replacesId.Value == Id)
             throw new DomainException("A certificate cannot replace itself.");
     }
+
+    /// <summary>
+    /// Represents a partial update to a Certificate entity.
+    /// Used for PATCH operations in the domain layer.
+    /// </summary>
+    public sealed record Patch(
+        string? CertificateName = null,
+        DateTime? IssueDate = null,
+        DateTime? ExpiryDate = null,
+        CertificateStatus? Status = null,
+        Guid? UserId = null,
+        Guid? CourseId = null,
+        Guid? EnrollmentId = null,
+        Guid? ReplacesId = null,
+        Guid? CompetenceFundId = null);
 }

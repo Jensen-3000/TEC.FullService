@@ -4,10 +4,7 @@ namespace TEC.FullService.Api.Domain;
 
 public class Company : SoftDeletableEntity
 {
-    protected Company()
-    {
-
-    }
+    private Company() { }
 
     public Guid Id { get; private set; } = Guid.CreateVersion7();
     public required string Name { get; set; }
